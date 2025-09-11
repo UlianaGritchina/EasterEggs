@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "egg5-halloween.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
