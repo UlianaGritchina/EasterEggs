@@ -9,9 +9,19 @@ import SwiftUI
 import SpriteKit
 
 public struct EasterEggsView: View {
+    
+    // MARK: Environment
+    
     @Environment(\.dismiss) private var dismiss
     
-    public init() { }
+    // MARK: StateObject
+    
+    @StateObject private var viewModel: ViewModel
+    
+    public init(sceneStyle: SceneStyle = .base) {
+        let vm = ViewModel(sceneStyle: sceneStyle)
+        _viewModel = StateObject(wrappedValue: vm)
+    }
     
     public var body: some View {
         ZStack {
@@ -22,7 +32,7 @@ public struct EasterEggsView: View {
     }
     
     private var eggsScene: SKScene {
-        let scene = EasterEggsScene()
+        let scene = EasterEggsScene(sceneStyle: viewModel.sceneStyle)
         scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scene.scaleMode = .fill
         return scene

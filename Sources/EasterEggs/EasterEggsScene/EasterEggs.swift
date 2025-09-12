@@ -5,12 +5,27 @@ import SpriteKit
 @MainActor final class EasterEggsScene: SKScene {
     
     private let motionManager = CMMotionManager()
-    private let month = NSCalendar.current.component(.month, from: Date())
-    private let day = NSCalendar.current.component(.day, from: Date())
+    private let month = Calendar.current.component(.month, from: Date())
+    private let day = Calendar.current.component(.day, from: Date())
     
-    private var eggsStyle: EggsStyle = .christmas
+    private let sceneStyle: SceneStyle
     
     var scoreLabel: SKLabelNode!
+    
+    override init(size: CGSize = CGSize(width: 300, height: 300)) {
+        self.sceneStyle = .base
+        super.init(size: size)
+    }
+    
+    init(size: CGSize = CGSize(width: 300, height: 300), sceneStyle: SceneStyle) {
+        self.sceneStyle = sceneStyle
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.sceneStyle = .base
+        super.init(coder: aDecoder)
+    }
     
     var score: Int = 0 {
         didSet { scoreLabel.text = "Score: \(score)" }
@@ -41,13 +56,13 @@ import SpriteKit
     }
     
     private func addBackgraund() {
-        let background = SKSpriteNode(texture: SKTexture(image: UIImage(named: eggsStyle.backgroundImage, in: .module, with: nil)!))
+        let background = SKSpriteNode(texture: SKTexture(image: UIImage(named: sceneStyle.backgroundImage, in: .module, with: nil)!))
         background.size = self.frame.size
         background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         background.zPosition = -1
         addChild(background)
         
-        if eggsStyle == .christmas {
+        if sceneStyle == .christmas {
             if let snow = SKEmitterNode(fileNamed: "Snow.sks") {
                 snow.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.height)
                 addChild(snow)
@@ -97,15 +112,15 @@ import SpriteKit
     }
     
     private func randomEggName() -> String {
-        if eggsStyle == .christmas {
-            return "egg\(Int.random(in: 1...11))-\(eggsStyle.rawValue)"
+        if sceneStyle == .christmas {
+            return "egg\(Int.random(in: 1...11))-\(sceneStyle.rawValue)"
         } else {
-            return "egg\(Int.random(in: 1...10))-\(eggsStyle.rawValue)"
+            return "egg\(Int.random(in: 1...10))-\(sceneStyle.rawValue)"
         }
     }
 }
 
-class SnowFall: SKScene {
+class SnowFallScene: SKScene {
     override func sceneDidLoad() {
         size = UIScreen.main.bounds.size
         scaleMode = .aspectFill

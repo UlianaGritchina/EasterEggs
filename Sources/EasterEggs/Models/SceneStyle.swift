@@ -1,13 +1,13 @@
 //
-//  File.swift
-//  EasterEggs
+//  SceneStyle.swift
+//  SceneStyle
 //
 //  Created by Uliana Gritchina on 11.09.2025.
 //
 
 import Foundation
 
-enum EggsStyle: String {
+public enum SceneStyle: String {
     case base
     case winter
     case spring
