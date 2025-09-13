@@ -66,6 +66,8 @@ import SpriteKit
             if let snow = SKEmitterNode(fileNamed: "Snow.sks") {
                 snow.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.height)
                 addChild(snow)
+            } else {
+                print("No snow found")
             }
         }
     }
@@ -115,7 +117,7 @@ import SpriteKit
         switch sceneStyle {
         case .base, .winter, .spring, .summer, .autumn:
             "egg\(Int.random(in: 1...10))-base"
-        case .halloween:
+        case .halloween, .watermelons:
             "egg\(Int.random(in: 1...10))-\(sceneStyle.rawValue)"
         case .christmas:
             "egg\(Int.random(in: 1...11))-\(sceneStyle.rawValue)"

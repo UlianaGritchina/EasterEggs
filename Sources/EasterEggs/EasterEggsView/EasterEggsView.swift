@@ -30,7 +30,9 @@ public struct EasterEggsView: View {
         }
         .ignoresSafeArea()
     }
-    
+}
+
+extension EasterEggsView {
     private var eggsScene: SKScene {
         let scene = EasterEggsScene(sceneStyle: viewModel.sceneStyle)
         scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -50,4 +52,3 @@ public struct EasterEggsView: View {
         .padding(.trailing, 20)
     }
 }
-

@@ -15,6 +15,7 @@ public enum SceneStyle: String {
     case autumn
     case halloween
     case christmas
+    case watermelons
     
     var backgroundImage: String {
         switch self {
@@ -25,6 +26,7 @@ public enum SceneStyle: String {
         case .autumn:  "autumnBack"
         case .halloween: "halloweenBack"
         case .christmas: "christmasBack"
+        case .watermelons: "watermelonsBack"
         }
     }
 }

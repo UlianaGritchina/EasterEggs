@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct OpenEasterEggsOnDeviceShakeModifier: ViewModifier {
+    
+    // MARK: State
+    
     @State private var isOpenEasterEggsView = false
     
-    let sceneStyle: SceneStyle
+    // MARK: Constants
+    
+    private let sceneStyle: SceneStyle
     
     init(sceneStyle: SceneStyle) {
         self.sceneStyle = sceneStyle
@@ -26,6 +31,8 @@ struct OpenEasterEggsOnDeviceShakeModifier: ViewModifier {
             }
     }
 }
+
+// MARK: - Extensions
 
 extension UIDevice {
     static let deviceDidShakeNotification = Notification.Name(rawValue: "deviceDidShakeNotification")
