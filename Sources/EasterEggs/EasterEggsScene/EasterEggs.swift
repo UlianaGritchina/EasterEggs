@@ -91,12 +91,12 @@ import SpriteKit
     }
     
     private func generateEgg(_ location: CGPoint) -> SKSpriteNode {
-        let egg =  SKSpriteNode(texture: SKTexture(image: UIImage(named: randomEggName(), in: .module, with: nil)!))
+        let egg = SKSpriteNode(texture: SKTexture(image: UIImage(named: randomEggName(), in: .module, with: nil)!))
         egg.name = "egg"
         egg.position = location
-        egg.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 32, height: 36))
+        egg.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 27, height: 31))
         egg.physicsBody?.restitution = 0.0
-        egg.size = CGSize(width: 50, height: 50)
+        egg.size = CGSize(width: 45, height: 45)
         egg.position.x = location.x
         egg.position.y = location.y
         return egg
@@ -112,10 +112,13 @@ import SpriteKit
     }
     
     private func randomEggName() -> String {
-        if sceneStyle == .christmas {
-            return "egg\(Int.random(in: 1...11))-\(sceneStyle.rawValue)"
-        } else {
-            return "egg\(Int.random(in: 1...10))-\(sceneStyle.rawValue)"
+        switch sceneStyle {
+        case .base, .winter, .spring, .summer, .autumn:
+            "egg\(Int.random(in: 1...10))-base"
+        case .halloween:
+            "egg\(Int.random(in: 1...10))-\(sceneStyle.rawValue)"
+        case .christmas:
+            "egg\(Int.random(in: 1...11))-\(sceneStyle.rawValue)"
         }
     }
 }
