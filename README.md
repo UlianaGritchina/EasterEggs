@@ -35,6 +35,7 @@ struct ContentView: View {
 }
 ```
 
+**Shake the eggs.**
 `.onShakeOpenEasterEggs()` the modifier will open the eggs when the user shakes the phone.
 
 ```
