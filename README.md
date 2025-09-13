@@ -1,7 +1,7 @@
 # EasterEggs Swift Package Mangager
 **Add Easter eggs to your iOS app.**
 
-<img width="3658" height="1809" alt="eggs" src="https://github.com/user-attachments/assets/10642214-8bc8-4d05-97d4-ff0dd06cac4d" />
+<img width="3658" height="1809" alt="Group 1321315437" src="https://github.com/user-attachments/assets/76fcbb81-84df-487a-be3a-d54bfbd5aa16" />
 
 ```
 import EasterEggs
