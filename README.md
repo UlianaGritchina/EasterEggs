@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Button(action: { isOpenEggs = true  }) {
+                Button(action: { isOpenEggs = true }) {
                     Text("Open eggs")
                         .font(.headline)
                 }
@@ -42,9 +42,6 @@ import EasterEggs
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State private var isOpenEggs = false
-    
     var body: some View {
         NavigationView {
             VStack {
