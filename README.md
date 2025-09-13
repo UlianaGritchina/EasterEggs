@@ -33,6 +33,32 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-
+```
 
 `.onShakeOpenEasterEggs()` the modifier will open the eggs when the user shakes the phone.
+
+```
+import EasterEggs
+import SwiftUI
+
+struct ContentView: View {
+    
+    @State private var isOpenEggs = false
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                Text("Your awesome content")
+            }
+            .navigationTitle("Your app")
+            .onShakeOpenEasterEggs()
+        }
+    }
+}
+
+#Preview {
+    ContentView()
+}
+```
+
+
