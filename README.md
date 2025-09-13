@@ -24,7 +24,7 @@ struct ContentView: View {
             }
             .navigationTitle("Your app")
             .fullScreenCover(isPresented: $isOpenEggs) {
-                EasterEggsView()
+                EasterEggsView(sceneStyle: .halloween)
             }
         }
     }
