@@ -33,7 +33,7 @@ import SpriteKit
     
     override func didMove(to view: SKView) {
         motionManager.startAccelerometerUpdates()
-        addBackgraund()
+        addBackground()
         addScoreLabel()
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
     }
@@ -55,19 +55,21 @@ import SpriteKit
         setupGravity()
     }
     
-    private func addBackgraund() {
-        let background = SKSpriteNode(texture: SKTexture(image: UIImage(named: sceneStyle.backgroundImage, in: .module, with: nil)!))
-        background.size = self.frame.size
-        background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
-        background.zPosition = -1
-        addChild(background)
-        
-        if sceneStyle == .christmas {
-            if let snow = SKEmitterNode(fileNamed: "Snow.sks") {
-                snow.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.height)
-                addChild(snow)
-            } else {
-                print("No snow found")
+    private func addBackground() {
+        if let uiImage = UIImage(named: sceneStyle.backgroundImage, in: sceneStyle.isCustom ? .main : .module, with: nil) {
+            let background = SKSpriteNode(texture: SKTexture(image: uiImage))
+            background.size = self.frame.size
+            background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+            background.zPosition = -1
+            addChild(background)
+            
+            if sceneStyle == .christmas {
+                if let snow = SKEmitterNode(fileNamed: "Snow.sks") {
+                    snow.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.height)
+                    addChild(snow)
+                } else {
+                    print("No snow found")
+                }
             }
         }
     }
@@ -93,15 +95,23 @@ import SpriteKit
     }
     
     private func generateEgg(_ location: CGPoint) -> SKSpriteNode {
-        let egg = SKSpriteNode(texture: SKTexture(image: UIImage(named: randomEggName(), in: .module, with: nil)!))
-        egg.name = "egg"
-        egg.position = location
-        egg.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 27, height: 31))
-        egg.physicsBody?.restitution = 0.0
-        egg.size = CGSize(width: 45, height: 45)
-        egg.position.x = location.x
-        egg.position.y = location.y
-        return egg
+        if let uiImage = UIImage(
+            named: randomEggName(),
+            in: sceneStyle.isCustom ? .main : .module,
+            with: nil
+        ) {
+            let egg = SKSpriteNode(texture: SKTexture(image: uiImage))
+            egg.name = "egg"
+            egg.position = location
+            egg.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 27, height: 31))
+            egg.physicsBody?.restitution = 0.0
+            egg.size = CGSize(width: 45, height: 45)
+            egg.position.x = location.x
+            egg.position.y = location.y
+            return egg
+        } else {
+            return SKSpriteNode()
+        }
     }
     
     private func setupGravity() {
@@ -114,14 +124,7 @@ import SpriteKit
     }
     
     private func randomEggName() -> String {
-        switch sceneStyle {
-        case .base, .winter, .spring, .summer, .autumn:
-            "egg\(Int.random(in: 1...10))-base"
-        case .halloween, .watermelons:
-            "egg\(Int.random(in: 1...10))-\(sceneStyle.rawValue)"
-        case .christmas:
-            "egg\(Int.random(in: 1...11))-\(sceneStyle.rawValue)"
-        }
+        sceneStyle.easterEggsImagesSet.randomElement() ?? ""
     }
 }
 
