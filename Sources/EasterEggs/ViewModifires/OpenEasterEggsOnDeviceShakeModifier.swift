@@ -47,6 +47,7 @@ extension UIWindow {
 }
 
 public extension View {
+    ///Opens the EasterEggsView when the user shakes the phone.
     func onShakeOpenEasterEggs(sceneStyle: SceneStyle = .base) -> some View {
         self.modifier(OpenEasterEggsOnDeviceShakeModifier(sceneStyle: sceneStyle))
     }

@@ -4,11 +4,12 @@ import SpriteKit
 
 @MainActor final class EasterEggsScene: SKScene {
     
-    private let motionManager = CMMotionManager()
-    private let month = Calendar.current.component(.month, from: Date())
-    private let day = Calendar.current.component(.day, from: Date())
+    // MARK: Constants
     
+    private let motionManager = CMMotionManager()
     private let sceneStyle: SceneStyle
+    
+    // MARK: Variables
     
     var scoreLabel: SKLabelNode!
     
@@ -27,9 +28,13 @@ import SpriteKit
         super.init(coder: aDecoder)
     }
     
+    // MARK: Computed properties
+    
     var score: Int = 0 {
         didSet { scoreLabel.text = "Score: \(score)" }
     }
+    
+    // MARK: Override methods
     
     override func didMove(to view: SKView) {
         motionManager.startAccelerometerUpdates()
@@ -55,6 +60,15 @@ import SpriteKit
         setupGravity()
     }
     
+    private func setupGravity() {
+        if let accelerometerData = motionManager.accelerometerData {
+            physicsWorld.gravity = CGVector(
+                dx: accelerometerData.acceleration.x * 12,
+                dy: accelerometerData.acceleration.y * 12
+            )
+        }
+    }
+    
     private func addBackground() {
         if let uiImage = UIImage(named: sceneStyle.backgroundImage, in: sceneStyle.isCustom ? .main : .module, with: nil) {
             let background = SKSpriteNode(texture: SKTexture(image: uiImage))
@@ -64,12 +78,7 @@ import SpriteKit
             addChild(background)
             
             if sceneStyle == .christmas {
-                if let snow = SKEmitterNode(fileNamed: "Snow.sks") {
-                    snow.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.height)
-                    addChild(snow)
-                } else {
-                    print("No snow found")
-                }
+                addSnowfall()
             }
         }
     }
@@ -82,7 +91,6 @@ import SpriteKit
         scoreLabel.position = CGPoint(x: size.width / 2, y: size.height - size.height / 10)
         addChild(scoreLabel)
     }
-    
     
     private func addEgg(_ location: CGPoint) {
         let egg = generateEgg(location)
@@ -114,27 +122,19 @@ import SpriteKit
         }
     }
     
-    private func setupGravity() {
-        if let accelerometerData = motionManager.accelerometerData {
-            physicsWorld.gravity = CGVector(
-                dx: accelerometerData.acceleration.x * 12,
-                dy: accelerometerData.acceleration.y * 12
-            )
+    private func addSnowfall() {
+        if let emitterPath: String = Bundle.module.path(forResource: "Snow", ofType: "sks"),
+           let snowNode = NSKeyedUnarchiver.unarchiveObject(withFile: emitterPath) as? SKEmitterNode,
+           let snowflakeImage = UIImage(named: "spark", in: .module, with: nil){
+            snowNode.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.height)
+            snowNode.particleTexture = SKTexture(image: snowflakeImage)
+            snowNode.name = "snowNode"
+            snowNode.targetNode = self
+            addChild(snowNode)
         }
     }
     
     private func randomEggName() -> String {
         sceneStyle.easterEggsImagesSet.randomElement() ?? ""
-    }
-}
-
-class SnowFallScene: SKScene {
-    override func sceneDidLoad() {
-        size = UIScreen.main.bounds.size
-        scaleMode = .aspectFill
-        anchorPoint = CGPoint(x: 0.5, y: 1)
-        backgroundColor = .clear
-        let node = SKEmitterNode(fileNamed: "Snow.sks")!
-        addChild(node)
     }
 }
