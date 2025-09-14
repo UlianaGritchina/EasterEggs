@@ -35,7 +35,7 @@ struct ContentView: View {
 }
 ```
 #### Beat the eggs.
-`.onShakeOpenEasterEggs()` modifier will open the eggs when the user shakes the phone.
+`.onShakeOpenEasterEggs()` viewModifire opens the EasterEggsView when the user shakes the device.
 
 ```
 import EasterEggs
