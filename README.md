@@ -34,9 +34,8 @@ struct ContentView: View {
     ContentView()
 }
 ```
-
-**Shake the eggs.**
-`.onShakeOpenEasterEggs()` the modifier will open the eggs when the user shakes the phone.
+#### Beat the eggs.
+`.onShakeOpenEasterEggs()` viewModifire opens the EasterEggsView when the user shakes the device.
 
 ```
 import EasterEggs
@@ -58,5 +57,21 @@ struct ContentView: View {
     ContentView()
 }
 ```
-
-
+#### Use different scene styles, including custom.
+**SceneStyle:**
+- `.base`
+- `.christmas`
+- `.halloween`
+- `.watermelons`
+- `.custom(backgroundImageName: String, eggsImages: [String])`
+```
+EasterEggsView(sceneStyle: .christmas)
+```
+```
+EasterEggsView(
+    sceneStyle: .custom(
+        backgroundImageName: "yourCustomBackground",
+        eggsImages: ["tennisBall", "bonfire", "world"]
+    )
+)
+```
