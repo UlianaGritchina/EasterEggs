@@ -24,11 +24,9 @@ public struct EasterEggsView: View {
     }
     
     public var body: some View {
-        ZStack {
-            SpriteView(scene: eggsScene)
-                .overlay(alignment: .topTrailing) { closeButton }
-        }
-        .ignoresSafeArea()
+        SpriteView(scene: eggsScene)
+            .ignoresSafeArea()
+            .overlay(alignment: .topTrailing) { closeButton }
     }
 }
 
@@ -42,13 +40,12 @@ extension EasterEggsView {
     
     private var closeButton: some View {
         Button(action: { dismiss()} ) {
-            Text("Close")
-                .foregroundColor(.accentColor)
-                .font(.headline)
-                .padding(4)
-                .background { Color.white.cornerRadius(5) }
+            Image(systemName: "xmark")
+                .foregroundStyle(.white)
+                .padding(8)
+                .background(.ultraThinMaterial)
+                .clipShape(Circle())
         }
-        .padding(.top, 50)
         .padding(.trailing, 20)
     }
 }

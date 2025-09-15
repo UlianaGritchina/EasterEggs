@@ -10,8 +10,9 @@ import SpriteKit
 class SnowfallScene: SKScene {
     public override func sceneDidLoad() {
         size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        scaleMode = .fill
+        scaleMode = .aspectFill
         backgroundColor = .clear
+        zPosition = -1
         addSnowfall()
     }
     
