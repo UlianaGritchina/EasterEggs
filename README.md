@@ -71,7 +71,7 @@ EasterEggsView(sceneStyle: .christmas)
 EasterEggsView(
     sceneStyle: .custom(
         backgroundImageName: "yourCustomBackground",
-        eggsImages: ["tennisBall", "bonfire", "world"]
+        eggsImages: ["yourCustomEgg1", "yourCustomEgg2", "yourCustomEgg3"]
     )
 )
 ```
