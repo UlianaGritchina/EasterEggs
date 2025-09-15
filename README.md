@@ -1,7 +1,7 @@
 # EasterEggs Swift Package
 **Add Easter eggs to your iOS app.**
 
-<img width="3658" height="1809" alt="Group 1321315437" src="https://github.com/user-attachments/assets/76fcbb81-84df-487a-be3a-d54bfbd5aa16" />
+<img width="3658" height="1809" alt="Group 1321315438" src="https://github.com/user-attachments/assets/90913238-f9a3-4707-a1c0-97339cad8fc4" />
 
 https://github.com/user-attachments/assets/139d3221-82ac-4f76-94dd-ab6a76fca3b6
 
