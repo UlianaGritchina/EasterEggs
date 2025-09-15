@@ -3,7 +3,7 @@
 
 <img width="3658" height="1809" alt="Group 1321315437" src="https://github.com/user-attachments/assets/76fcbb81-84df-487a-be3a-d54bfbd5aa16" />
 
-https://github.com/user-attachments/assets/c87e2b29-e858-42c7-8873-1b2e2de9b2b3
+https://github.com/user-attachments/assets/139d3221-82ac-4f76-94dd-ab6a76fca3b6
 
 ```
 import EasterEggs
