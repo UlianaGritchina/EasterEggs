@@ -14,6 +14,6 @@ let package = Package(
             targets: ["EasterEggs"]),
     ],
     targets: [
-        .target(name: "EasterEggs", resources: [.process("Resources")]),
+        .target(name: "EasterEggs", resources: [.process("Core/Resources")]),
     ]
 )

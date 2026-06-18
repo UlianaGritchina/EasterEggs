@@ -1,4 +1,3 @@
-
 import CoreMotion
 import SpriteKit
 
@@ -119,18 +118,6 @@ import SpriteKit
             return egg
         } else {
             return SKSpriteNode()
-        }
-    }
-    
-    private func addSnowfall() {
-        if let emitterPath: String = Bundle.module.path(forResource: "Snow", ofType: "sks"),
-           let snowNode = NSKeyedUnarchiver.unarchiveObject(withFile: emitterPath) as? SKEmitterNode,
-           let snowflakeImage = UIImage(named: "spark", in: .module, with: nil){
-            snowNode.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.height)
-            snowNode.particleTexture = SKTexture(image: snowflakeImage)
-            snowNode.name = "snowNode"
-            snowNode.targetNode = self
-            addChild(snowNode)
         }
     }
     

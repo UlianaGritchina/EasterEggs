@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SpriteKit
-
+/// A SwiftUI view that displays an interactive Easter Eggs scene.
 public struct EasterEggsView: View {
     
     // MARK: Environment
@@ -27,18 +27,30 @@ public struct EasterEggsView: View {
         SpriteView(scene: eggsScene)
             .ignoresSafeArea()
             .overlay(alignment: .topTrailing) { closeButton }
+            .preferredColorScheme(.light)
     }
 }
 
 extension EasterEggsView {
     private var eggsScene: SKScene {
         let scene = EasterEggsScene(sceneStyle: viewModel.sceneStyle)
-        scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scene.size = CGSize(
+            width: UIScreen.main.bounds.width,
+            height: UIScreen.main.bounds.height
+        )
         scene.scaleMode = .fill
         return scene
     }
     
-    private var closeButton: some View {
+    @ViewBuilder private var closeButton: some View {
+        if #available(iOS 26, *) {
+            xmarkButtonGlass
+        } else {
+            xmarkButtonMaterial
+        }
+    }
+    
+    private var xmarkButtonMaterial: some View {
         Button(action: { dismiss()} ) {
             Image(systemName: "xmark")
                 .foregroundStyle(.white)
@@ -47,5 +59,17 @@ extension EasterEggsView {
                 .clipShape(Circle())
         }
         .padding(.trailing, 20)
+    }
+    
+    
+    @available(iOS 26.0, *)
+    private var xmarkButtonGlass: some View {
+        Button(action: { dismiss()} ) {
+            Image(systemName: "xmark")
+                .padding(8)
+                .foregroundStyle(.gray)
+                .glassEffect()
+        }
+        .padding(.trailing, 10)
     }
 }

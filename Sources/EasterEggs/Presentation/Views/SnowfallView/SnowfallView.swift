@@ -7,7 +7,7 @@
 
 import SpriteKit
 import SwiftUI
-
+/// It's starting to snow on your view.
 public struct SnowfallView: View {
     public var body: some View {
         SpriteView(scene: SnowfallScene(), options: [.allowsTransparency])
