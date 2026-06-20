@@ -15,5 +15,6 @@ let package = Package(
     ],
     targets: [
         .target(name: "EasterEggs", resources: [.process("Core/Resources")]),
+        .testTarget(name: "EasterEggsTests", dependencies: ["EasterEggs"])
     ]
 )

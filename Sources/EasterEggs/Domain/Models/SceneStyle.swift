@@ -47,7 +47,8 @@ import Foundation
 /// > Important: All custom images must be included in your application's
 /// > asset catalog or bundle, and their names must exactly match the
 /// > values passed to `SceneStyle.custom`.
-public enum SceneStyle: Equatable {
+public enum SceneStyle: Equatable, Sendable {
+    
     /// Default style with a summer-themed background and standard eggs.
     case base
     
