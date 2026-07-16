@@ -64,7 +64,7 @@ struct ContentView: View {
 - `.halloween`
 - `.watermelons`
 - `.custom(backgroundImageName: String, eggsImages: [String])`
-```
+```swift
 EasterEggsView(sceneStyle: .christmas)
 ```
 ```swift
