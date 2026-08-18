@@ -5,7 +5,7 @@
 
 https://github.com/user-attachments/assets/139d3221-82ac-4f76-94dd-ab6a76fca3b6
 
-```
+```swift
 import EasterEggs
 import SwiftUI
 
@@ -37,7 +37,7 @@ struct ContentView: View {
 #### Beat the eggs.
 `.onShakeOpenEasterEggs()` viewModifire opens the EasterEggsView when the user shakes the device.
 
-```
+```swift
 import EasterEggs
 import SwiftUI
 
@@ -64,10 +64,10 @@ struct ContentView: View {
 - `.halloween`
 - `.watermelons`
 - `.custom(backgroundImageName: String, eggsImages: [String])`
-```
+```swift
 EasterEggsView(sceneStyle: .christmas)
 ```
-```
+```swift
 EasterEggsView(
     sceneStyle: .custom(
         backgroundImageName: "yourCustomBackground",
